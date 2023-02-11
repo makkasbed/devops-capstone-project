@@ -130,11 +130,10 @@ class TestAccountService(TestCase):
     def test_read_an_account(self):
         """It should read an account"""
         account = self._create_accounts(1)[0]
-        resp = self.client.get(f"{BASE_URL}/{account.id}",content_type="application/json")
+        resp = self.client.get(f"{BASE_URL}/{account.id}", content_type="application/json")
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         data = resp.get_json()
         self.assertEqual(data["name"], account.name)
-
 
     def test_get_account_not_found(self):
         """It should not Read an account that is not found"""
@@ -197,5 +196,3 @@ class TestAccountService(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         # Check for the CORS header
         self.assertEqual(response.headers.get('Access-Control-Allow-Origin'), '*')
-        
-                                      
